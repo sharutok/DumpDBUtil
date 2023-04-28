@@ -1,10 +1,11 @@
 const { NoSQLDumpAll } = require("../Controller/NoSQLDumpController")
 const { SQLDumpAll } = require("../Controller/SQLdbDumpContoller")
 const schedule = require('node-schedule');
+const { writeStatus } = require("../Controller/SchedulerController");
 
 exports.DumpDB = async (req, res) => {
     try {
-        await Promise.all[NoSQLDumpAll(), SQLDumpAll()]
+        await Promise.all[await NoSQLDumpAll(), await SQLDumpAll(), writeStatus()]
         console.log("Dumped");
         res && res.json({ mess: "dumped" })
     } catch (error) {
@@ -13,6 +14,6 @@ exports.DumpDB = async (req, res) => {
 
 }
 
-schedule.scheduleJob("0 0 * * *", () => {
+schedule.scheduleJob("30 0 * * *", () => {
     this.DumpDB()
 })
