@@ -19,7 +19,7 @@ exports.writeStatus = async () => {
                 const template = handlebars.compile(html);
                 const replacements = {
                     date: date,
-                    path: process.env.NODE_ENV === "production" ? "D:\Projects\Utils-Dump SQL\Dump" : "D:\Projects\Utils-Dump SQL\Dump"
+                    path: path.join(__dirname, '../Dump')
                 };
                 var htmlToSend = template(replacements);
 
