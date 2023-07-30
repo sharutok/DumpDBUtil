@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start:dev": "set NODE_ENV=develpment&& nodemon server.js",
-    "start:prod": "set NODE_ENV=production&& nodemon server.js"
+    "start:prod": "set NODE_ENV=production&& pm2 start server.js --name 'db-dump-util'"
   },
   "keywords": [],
   "author": "",
